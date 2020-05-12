@@ -1,9 +1,11 @@
 package br.com.igorc.voting.domain;
 
 import br.com.igorc.voting.enumeration.VoteEnumeration;
+import br.com.igorc.voting.enumeration.VotingStatusEnumeration;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Getter
+@NoArgsConstructor
 public class VotingSession {
 
     private Long id;
@@ -28,6 +31,10 @@ public class VotingSession {
      * Lista de votos.
      */
     private List<Vote> votes;
+    /**
+     * Status da sessão (Aberta/Fechada).
+     */
+    private VotingStatusEnumeration status;
 
     /**
      * Verifica se o associado informado já votou.
@@ -35,7 +42,7 @@ public class VotingSession {
      */
     public Boolean hasAssociateVoted(Associate associate) {
         long associatePreviousVotes = votes.stream()
-                .filter(v -> associate.getCpf().equals(v.getAssociate().getCpf()))
+                .filter(v -> associate.getId().equals(v.getAssociate().getId()))
                 .count();
 
         return associatePreviousVotes > 0;
@@ -57,6 +64,10 @@ public class VotingSession {
         return votes.stream()
                 .filter(v -> VoteEnumeration.NO.equals(v.getVote()))
                 .count();
+    }
+
+    public Boolean isClosed() {
+        return VotingStatusEnumeration.CLOSED.equals(status);
     }
 
 }

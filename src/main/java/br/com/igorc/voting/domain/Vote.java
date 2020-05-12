@@ -4,6 +4,7 @@ import br.com.igorc.voting.enumeration.VoteEnumeration;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * Voto
@@ -11,6 +12,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Getter
+@NoArgsConstructor
 public class Vote {
     private Long id;
     private VoteEnumeration vote;

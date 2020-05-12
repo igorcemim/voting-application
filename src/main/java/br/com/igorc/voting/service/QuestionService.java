@@ -6,7 +6,7 @@ import br.com.igorc.voting.domain.Question;
 import br.com.igorc.voting.entity.QuestionEntity;
 import br.com.igorc.voting.repository.QuestionRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,7 +30,7 @@ public class QuestionService extends AbstractService<Question, QuestionEntity, L
     }
 
     @Override
-    protected PagingAndSortingRepository<QuestionEntity, Long> getRepository() {
+    protected JpaRepository<QuestionEntity, Long> getRepository() {
         return repository;
     }
 

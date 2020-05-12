@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VoteEntity {
+public class VoteEntity implements EntityId<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vote_seq")
     @SequenceGenerator(name = "vote_seq", allocationSize = 1)

@@ -6,7 +6,7 @@ import br.com.igorc.voting.domain.Associate;
 import br.com.igorc.voting.entity.AssociateEntity;
 import br.com.igorc.voting.repository.AssociateRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,7 +30,7 @@ public class AssociateService extends AbstractService<Associate, AssociateEntity
     }
 
     @Override
-    protected PagingAndSortingRepository<AssociateEntity, Long> getRepository() {
+    protected JpaRepository<AssociateEntity, Long> getRepository() {
         return repository;
     }
 

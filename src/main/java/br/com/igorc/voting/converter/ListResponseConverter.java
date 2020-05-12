@@ -23,6 +23,6 @@ abstract class ListResponseConverter<R, I, O> {
 
     abstract protected R createResponse(List<O> content, int currentPage, int lastPage);
 
-    abstract protected O convertElement(I associate);
+    abstract protected O convertElement(I element);
 
 }

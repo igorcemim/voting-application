@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AssociateEntity {
+public class AssociateEntity implements EntityId<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "associate_seq")
     @SequenceGenerator(name = "associate_seq", allocationSize = 1)
