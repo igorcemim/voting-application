@@ -1,0 +1,4 @@
+{
+  "addons": ["heroku-postgres:hobby-dev"],
+  "stack": "container"
+}
