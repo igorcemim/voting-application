@@ -11,12 +11,15 @@ import br.com.igorc.voting.converter.VotingSessionListResponseConverter;
 import br.com.igorc.voting.domain.Vote;
 import br.com.igorc.voting.domain.VotingSession;
 import br.com.igorc.voting.service.VotingSessionService;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Tag(name = "Sessões de votação")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/v1/voting-session")
@@ -32,6 +35,7 @@ public class VotingSessionResource {
 
 	private VoteConverter voteConverter;
 
+	@Operation(summary = "Criar sessão de votação.")
 	@PostMapping
 	public VotingSessionCreateResponse create(@RequestBody @Valid VotingSessionCreateRequest request) {
 		VotingSession votingSession = votingSessionConverter.convert(request);
@@ -39,13 +43,13 @@ public class VotingSessionResource {
 		return createResponseConverter.convert(created);
 	}
 
+	@Operation(summary = "Listar sessões de votação.")
 	@GetMapping
-	public VotingSessionListResponse list(
-			@ApiParam(name = "page", value = "Número da página.") @RequestParam(defaultValue = "0") int page
-	) {
+	public VotingSessionListResponse list(@Parameter(name = "page") @RequestParam(name = "page", defaultValue = "0") Integer page) {
 		return listResponseConverter.convert(service.list(page));
 	}
 
+	@Operation(summary = "Votar em uma sessão de votação aberta.")
 	@PostMapping("/{id}/vote")
 	public void vote(@PathVariable("id") Long votingSessionId, @RequestBody @Valid VoteRequest request) {
 		Vote vote = voteConverter.convert(request);

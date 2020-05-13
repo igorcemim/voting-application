@@ -8,12 +8,15 @@ import br.com.igorc.voting.converter.QuestionCreateResponseConverter;
 import br.com.igorc.voting.converter.QuestionListResponseConverter;
 import br.com.igorc.voting.domain.Question;
 import br.com.igorc.voting.service.QuestionService;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Tag(name = "Pautas")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/v1/question")
@@ -27,6 +30,7 @@ public class QuestionResource {
 
 	private QuestionListResponseConverter questionListResponseConverter;
 
+	@Operation(summary = "Criar pauta.")
 	@PostMapping
 	public QuestionCreateResponse create(@RequestBody @Valid QuestionCreateRequest request) {
 		Question question = questionConverter.convert(request);
@@ -34,10 +38,9 @@ public class QuestionResource {
 		return createResponseConverter.convert(created);
 	}
 
+	@Operation(summary = "Listar pautas.")
 	@GetMapping
-	public QuestionListResponse list(
-			@ApiParam(name = "page", value = "Número da página.") @RequestParam(defaultValue = "0") int page
-	) {
+	public QuestionListResponse list(@Parameter @RequestParam(name = "page") int page) {
 		return questionListResponseConverter.convert(service.list(page));
 	}
 
