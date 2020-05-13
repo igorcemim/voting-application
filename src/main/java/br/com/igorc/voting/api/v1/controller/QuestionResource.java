@@ -40,7 +40,8 @@ public class QuestionResource {
 
 	@Operation(summary = "Listar pautas.")
 	@GetMapping
-	public QuestionListResponse list(@Parameter @RequestParam(name = "page") int page) {
+	@Parameter(name = "page", description = "Número da página.")
+	public QuestionListResponse list(@RequestParam(name = "page", required = false, defaultValue = "0") int page) {
 		return questionListResponseConverter.convert(service.list(page));
 	}
 

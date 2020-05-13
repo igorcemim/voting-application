@@ -44,12 +44,14 @@ public class VotingSessionResource {
 	}
 
 	@Operation(summary = "Listar sessões de votação.")
+	@Parameter(name = "page", description = "Número da página.")
 	@GetMapping
-	public VotingSessionListResponse list(@Parameter(name = "page") @RequestParam(name = "page", defaultValue = "0") Integer page) {
+	public VotingSessionListResponse list(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page) {
 		return listResponseConverter.convert(service.list(page));
 	}
 
 	@Operation(summary = "Votar em uma sessão de votação aberta.")
+	@Parameter(name = "id", description = "Código da sessão de votação.")
 	@PostMapping("/{id}/vote")
 	public void vote(@PathVariable("id") Long votingSessionId, @RequestBody @Valid VoteRequest request) {
 		Vote vote = voteConverter.convert(request);
