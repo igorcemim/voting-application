@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class VotingSessionListResponse {
+public class VotingSessionListResponse implements ListResponse<VotingSessionResponse> {
     private List<VotingSessionResponse> content;
     private Integer currentPage;
     private Integer lastPage;

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class AssociateListResponse {
+public class AssociateListResponse implements ListResponse<AssociateResponse> {
     private List<AssociateResponse> content;
     private Integer currentPage;
     private Integer lastPage;

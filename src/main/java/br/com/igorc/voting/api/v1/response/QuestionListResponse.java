@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class QuestionListResponse {
+public class QuestionListResponse implements ListResponse<QuestionResponse> {
     private List<QuestionResponse> content;
     private Integer currentPage;
     private Integer lastPage;

@@ -1,10 +1,11 @@
 package br.com.igorc.voting.converter;
 
+import br.com.igorc.voting.api.v1.response.ListResponse;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-abstract class ListResponseConverter<R, I, O> {
+abstract class ListResponseConverter<R extends ListResponse, I, O> {
 
     public R convert(Page<I> page) {
         List<O> associates = page.map(e -> convertElement(e)).getContent();
