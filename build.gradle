@@ -38,3 +38,7 @@ test {
 testlogger {
 	theme 'mocha-parallel'
 }
+
+bootRun {
+	systemProperty 'spring.profiles.active', 'dev'
+}
