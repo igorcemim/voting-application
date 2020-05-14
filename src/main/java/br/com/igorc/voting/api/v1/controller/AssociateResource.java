@@ -10,7 +10,6 @@ import br.com.igorc.voting.domain.Associate;
 import br.com.igorc.voting.service.AssociateService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +19,7 @@ import javax.validation.Valid;
 @Tag(name = "Associados")
 @RestController
 @AllArgsConstructor
-@RequestMapping("/v1/associate")
+@RequestMapping("/v1/associates")
 public class AssociateResource {
 
 	private AssociateService service;

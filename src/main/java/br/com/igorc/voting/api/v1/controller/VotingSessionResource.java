@@ -22,7 +22,7 @@ import javax.validation.Valid;
 @Tag(name = "Sessões de votação")
 @RestController
 @AllArgsConstructor
-@RequestMapping("/v1/voting-session")
+@RequestMapping("/v1/voting-sessions")
 public class VotingSessionResource {
 
 	private VotingSessionService service;

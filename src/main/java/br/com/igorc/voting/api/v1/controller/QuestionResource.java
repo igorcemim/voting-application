@@ -19,7 +19,7 @@ import javax.validation.Valid;
 @Tag(name = "Pautas")
 @RestController
 @AllArgsConstructor
-@RequestMapping("/v1/question")
+@RequestMapping("/v1/questions")
 public class QuestionResource {
 
 	private QuestionService service;
