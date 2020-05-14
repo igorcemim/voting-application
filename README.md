@@ -29,3 +29,9 @@ No Windows:
 ```sh
 ./gradlew test
 ```
+
+### Deploy com Heroku
+- Fazer um fork do projeto utilizando Github.
+- Criar um novo app no Heroku.
+- Adicionar o addon Heroku Postgres. O Heroku configurará automaticamente as variáveis de ambiente SPRING_DATASOURCE_URL, SPRING_DATASOURCE_USERNAME e SPRING_DATASOURCE_PASSWORD utilizadas pelo Spring para estabelecer a conexão ao banco de dados.
+- Realizar o deploy do fork criado através do Github.
