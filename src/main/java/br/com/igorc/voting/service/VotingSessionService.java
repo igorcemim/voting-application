@@ -87,7 +87,7 @@ public class VotingSessionService extends AbstractService<VotingSession, VotingS
     }
 
     private Instant calculateClosingTime(Integer duration) {
-        return Instant.now().plusSeconds(duration * 5);
+        return Instant.now().plusSeconds(duration * 60);
     }
 
     /**
