@@ -3,6 +3,7 @@ package br.com.igorc.voting.service;
 import br.com.igorc.voting.converter.VoteEntityConverter;
 import br.com.igorc.voting.converter.VotingSessionConverter;
 import br.com.igorc.voting.converter.VotingSessionEntityConverter;
+import br.com.igorc.voting.domain.Associate;
 import br.com.igorc.voting.domain.Question;
 import br.com.igorc.voting.domain.Vote;
 import br.com.igorc.voting.domain.VotingSession;
@@ -32,6 +33,8 @@ public class VotingSessionService extends AbstractService<VotingSession, VotingS
     private VoteRepository voteRepository;
     private CloseSessionService closeSessionService;
     private QuestionService questionService;
+    private UserInfoService userInfoService;
+    private AssociateService associateService;
 
     @Override
     protected VotingSessionEntity convertToEntity(VotingSession domain) {
@@ -97,6 +100,8 @@ public class VotingSessionService extends AbstractService<VotingSession, VotingS
         VotingSessionEntity votingSessionEntity = repository.findById(votingSessionId)
                 .orElseThrow(() -> new NotFoundException("Sessão de votação não encontrada."));
         VotingSession votingSession = convertToDomain(votingSessionEntity);
+        Associate associate = associateService.find(vote.getAssociate().getId())
+                .orElseThrow(() -> new BusinessException("O associado informado não existe."));
 
         if (votingSession.isClosed()) {
             throw new BusinessException("A sessão de votação está fechada.");
@@ -104,6 +109,10 @@ public class VotingSessionService extends AbstractService<VotingSession, VotingS
 
         if (votingSession.hasAssociateVoted(vote.getAssociate())) {
             throw new BusinessException("O associado informado já votou na sessão.");
+        }
+
+        if (userInfoService.isAbleToVote(associate.getCpf())) {
+            throw new BusinessException("O associado não pode votar.");
         }
 
         VoteEntity voteEntity = voteEntityConverter.convert(vote);
