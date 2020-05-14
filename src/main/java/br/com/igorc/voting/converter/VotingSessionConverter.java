@@ -9,10 +9,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
 public class VotingSessionConverter {
+
+    private final Integer DURATION_DEFAULT_VALUE = 1;
 
     private VoteConverter voteConverter;
     private QuestionConverter questionConverter;
@@ -31,7 +34,7 @@ public class VotingSessionConverter {
         return new VotingSession(
                 null,
                 new Question(request.getQuestionId(), null),
-                request.getDuration(),
+                Optional.ofNullable(request.getDuration()).orElse(DURATION_DEFAULT_VALUE),
                 new ArrayList<>(),
                 VotingStatusEnumeration.OPEN
         );

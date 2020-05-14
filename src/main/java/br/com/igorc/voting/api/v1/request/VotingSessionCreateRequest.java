@@ -14,8 +14,7 @@ public class VotingSessionCreateRequest {
     @Schema(title = "Pauta", description = "Código da pauta a ser votada.")
     @NotNull(message = "O campo Associado é obrigatório.")
     private Long questionId;
-    @Schema(title = "Duração", description = "Duração da sessão de votação.")
-    @NotNull(message = "O campo Duração é obrigatório.")
+    @Schema(title = "Duração", description = "Duração da sessão de votação.", defaultValue = "1")
     @Min(value = 1, message = "A duração mínima é de 1 minuto.")
     @Max(value = 60, message = "A duração máxima é de 60 minutos.")
     private Integer duration;
