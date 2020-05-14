@@ -2,6 +2,7 @@ package br.com.igorc.voting.converter;
 
 import br.com.igorc.voting.api.v1.response.VoteResponse;
 import br.com.igorc.voting.domain.Vote;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,7 +11,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
+@AllArgsConstructor
 public class VoteResponseConverter {
+
+    private AssociateListResponseConverter associateListResponseConverter;
+
     public List<VoteResponse> convert(List<Vote> votes) {
         return Optional.ofNullable(votes)
                 .map(this::convertList)
@@ -24,6 +29,10 @@ public class VoteResponseConverter {
     }
 
     public VoteResponse convert(Vote vote) {
-        return null;
+        return new VoteResponse(
+                vote.getId(),
+                vote.getVote(),
+                associateListResponseConverter.convertElement(vote.getAssociate())
+        );
     }
 }
