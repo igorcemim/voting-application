@@ -6,7 +6,7 @@ https://voting-application-igorc.herokuapp.com/docs
 
 ## Como executar o projeto
 
-## Pré-requisitos
+### Pré-requisitos
 - JDK 11 (para executar via Gradle)
 - Docker e Docker Compose (para executar via Docker)
 
@@ -29,4 +29,3 @@ No Windows:
 ```sh
 ./gradlew test
 ```
-
